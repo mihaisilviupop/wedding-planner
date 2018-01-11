@@ -8,9 +8,9 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./invitati-nunta.component.css']
 })
 export class InvitatiNuntaComponent implements OnInit {
-  private nuntasi: Observable<INuntas[]>;
+  public nuntasi: Observable<INuntas[]>;
   private nuntasiRef: AngularFireList<INuntas>;
-  private nuntasNou: INuntas = {
+  public nuntasNou: INuntas = {
     nume: "",
     prenume: "",
     parte: "",
@@ -22,14 +22,14 @@ export class InvitatiNuntaComponent implements OnInit {
     this.getNuntasi();
   }
 
-  getNuntasi() {
+  private getNuntasi() {
     this.nuntasiRef = this.db.list('/nuntasi');
     this.nuntasi = this.nuntasiRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
   }
 
-  adaugaNuntas() {
+  public adaugaNuntas() {
     this.nuntasiRef.push(this.nuntasNou);
     this.nuntasNou = {
       nume: "",
@@ -39,13 +39,13 @@ export class InvitatiNuntaComponent implements OnInit {
     };
   }
 
-  stergeNuntas(key) {
+  public stergeNuntas(key) {
     this.nuntasiRef.remove(key);
   }
 
 }
 
-class INuntas {
+export class INuntas {
   nume: string;
   prenume: string;
   invitat?: boolean;
