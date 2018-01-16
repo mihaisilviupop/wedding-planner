@@ -1,9 +1,25 @@
 <mat-toolbar color="primary">
-    <span><mat-icon>favorite</mat-icon></span>
-    <span>Planificare nunta</span>
+  <span>
+    <mat-icon>favorite</mat-icon>
+  </span>
+  <span>Planificare nunta</span>
+  <div class="welcome">
+    <div>
+      <h3 *ngIf="authService.user | async">Salutare {{ (authService.user | async)?.email }}!</h3>
+    </div>
+    <div>
 
+      <button mat-button (click)="authService.logout()" *ngIf="authService.user | async">
+        Logout
+      </button>
 
-    <!-- <button mat-icon-button [mat-menu-trigger-for]="menu">
+      <button mat-button (click)="authService.login()" *ngIf="!(authService.user | async)">
+        Login
+      </button>
+    </div>
+  </div>
+
+  <!-- <button mat-icon-button [mat-menu-trigger-for]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
   </mat-toolbar>

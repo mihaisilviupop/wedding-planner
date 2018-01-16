@@ -9,8 +9,12 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NuntasiService } from './services/nuntasi.service';
 import { NuntasiComponent } from './nuntasi/nuntasi.component';
+
+//Services
+import { NuntasiService } from './services/nuntasi.service';
+import { AuthService } from './services/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,7 @@ import { NuntasiComponent } from './nuntasi/nuntasi.component';
     MaterialModule,
     BrowserAnimationsModule
   ],
-  providers: [NuntasiService],
+  providers: [NuntasiService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

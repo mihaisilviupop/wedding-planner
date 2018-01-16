@@ -1,0 +1,9 @@
+.welcome{
+  position: absolute;
+  right: 0px;
+  padding: 10px;
+}
+
+.welcome div {
+  float: right !important;
+}

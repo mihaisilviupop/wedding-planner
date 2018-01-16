@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<main role="main" class="container">
+<main *ngIf="authService.user | async" role="main" class="container">
 
   <h3>Lista nuntasi</h3>
 
