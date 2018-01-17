@@ -10,17 +10,17 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NuntasiComponent } from './nuntasi/nuntasi.component';
-
-//Services
 import { NuntasiService } from './services/nuntasi.service';
 import { AuthService } from './services/auth.service';
+import { InfoNuntasiComponent } from './info-nuntasi/info-nuntasi.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavbarComponent,
-    NuntasiComponent
+    NuntasiComponent,
+    InfoNuntasiComponent
   ],
   imports: [
     BrowserModule,

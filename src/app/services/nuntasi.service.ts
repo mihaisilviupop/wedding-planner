@@ -10,6 +10,7 @@ export class NuntasiService {
   public nuntas: AngularFireObject<Nuntas>;
   private nuntasiRef: AngularFireList<Nuntas>;
   public nuntasi: Observable<Nuntas[]>;
+  public totalNuntasi: number = 0;
 
   constructor(private db: AngularFireDatabase) {
     this.nuntasiRef = this.db.list(this.dbPath);
@@ -34,6 +35,14 @@ export class NuntasiService {
 
   getNuntasiList(): void {
     this.nuntasi = this.nuntasiRef.snapshotChanges().map(changes => {
+      let items = changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      this.totalNuntasi = items.length;
+      return items;
+    });
+  }
+
+  queryNuntasi(key: string, value: any) {
+    return this.db.list(this.dbPath, ref => ref.orderByChild(key).equalTo(value)).snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
   }
