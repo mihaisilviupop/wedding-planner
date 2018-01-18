@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { NuntasiService } from '../services/nuntasi.service';
 import { Nuntas } from '../models/nuntas.model';
 import { Observable } from 'rxjs/Observable';
+import { NuntasNouComponent } from "../nuntas-nou/nuntas-nou.component";;
 
 @Component({
   selector: 'nuntasi',
@@ -18,7 +19,7 @@ export class NuntasiComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private nuntasiService: NuntasiService) {
+  constructor(private nuntasiService: NuntasiService, private dialog: MatDialog) {
     this.nuntasiService.getNuntasiList();
 
     this.nuntasiService.nuntasi.subscribe(items => {
@@ -46,11 +47,13 @@ export class NuntasiComponent implements OnInit {
   }
 
   adaugaNuntas() {
-    this.nuntasiService.createNuntas(this.nuntasNou);
-    this.nuntasNou  = new Nuntas();
+    let dialog = this.dialog.open(NuntasNouComponent, { autoFocus: true });
+    dialog.afterClosed().subscribe((nuntas: Nuntas) => {
+      this.nuntasiService.createNuntas(nuntas);
+    });
   }
 
-  stergeNuntas(key: string){
+  stergeNuntas(key: string) {
     this.nuntasiService.deleteNuntas(key);
   }
 

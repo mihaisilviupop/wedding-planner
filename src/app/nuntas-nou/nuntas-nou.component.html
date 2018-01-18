@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Adauga persoana noua</h1>
+
+<div class="form-container" mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Nume" [(ngModel)]="nuntasNou.nume">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Prenume" [(ngModel)]="nuntasNou.prenume">
+  </mat-form-field>
+  <mat-checkbox [(ngModel)]="nuntasNou.invitat">Invitat</mat-checkbox>
+  <mat-checkbox [(ngModel)]="nuntasNou.confirmat">Confirmat</mat-checkbox>
+  <mat-radio-group [(ngModel)]="nuntasNou.parte">Din partea
+    <mat-radio-button value="mihai">Mihai</mat-radio-button>
+    <mat-radio-button value="andreea">Andreea</mat-radio-button>
+    <mat-radio-button value="amandurora">Amandurora</mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field>
+    <input type="number" matInput placeholder="Nr. insotitori" [(ngModel)]="nuntasNou.nrInsotitori">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" matInput placeholder="Categorii" [(ngModel)]="nuntasNou.categorii">
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="confirm()" color="primary">
+    Salveaza
+  </button>
+  <button mat-button (click)="dialogRef.close()">
+    Anuleaza
+  </button>
+</div>
