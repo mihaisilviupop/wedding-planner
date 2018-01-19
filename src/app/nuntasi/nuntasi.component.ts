@@ -57,4 +57,8 @@ export class NuntasiComponent implements OnInit {
     this.nuntasiService.deleteNuntas(key);
   }
 
+  // importNuntasi(){
+  //   this.nuntasiService.importNuntasi();
+  // }
+
 }

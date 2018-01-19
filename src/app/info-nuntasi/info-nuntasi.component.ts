@@ -9,19 +9,33 @@ import { NuntasiService } from '../services/nuntasi.service';
 export class InfoNuntasiComponent implements OnInit {
   totalConfirmat = 0;
   totalInvitati = 0;
-  constructor(public nuntasi: NuntasiService) {
+  totalNuntasi = 0;
+  totalPersoane = 0;
+  totalInsotitori = 0;
+  constructor(public nuntasiService: NuntasiService) {
   }
 
   ngOnInit() {
+
     this.subscribeTotaluri();
   }
 
   subscribeTotaluri() {
-    this.nuntasi.queryNuntasi('confirmat', true).subscribe(items => {
+    this.nuntasiService.queryNuntasi('confirmat', true).subscribe(items => {
       this.totalConfirmat = items.length;
     });
-    this.nuntasi.queryNuntasi('invitat', true).subscribe(items => {
+    this.nuntasiService.queryNuntasi('invitat', true).subscribe(items => {
       this.totalInvitati = items.length;
+    });
+    this.nuntasiService.nuntasi.subscribe(items => {
+      this.totalNuntasi = items.length;
+      this.totalInsotitori = 0;
+      items.forEach(item => {
+        if (item.nrInsotitori) {
+          this.totalNuntasi += item.nrInsotitori;
+          this.totalInsotitori += item.nrInsotitori;
+        }
+      });
     });
   }
 
