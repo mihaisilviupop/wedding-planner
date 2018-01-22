@@ -1,6 +1,5 @@
-<button (click)="adaugaNuntas()" mat-raised-button color="primary">Adauga</button>
+<button (click)="editNuntas()" mat-raised-button color="primary">Adauga</button>
 <!-- <button (click)="importNuntasi()" mat-raised-button color="primary">import</button> -->
-
 
 <div class="example-header">
   <mat-form-field>
@@ -14,9 +13,12 @@
 
     <ng-container matColumnDef="options">
       <mat-header-cell *matHeaderCellDef> header </mat-header-cell>
-      <mat-cell *matCellDef="let row"> <button (click)="stergeNuntas(row.key)" mat-raised-button color="warn">Sterge</button></mat-cell>
+      <mat-cell *matCellDef="let row">
+        <button (click)="stergeNuntas(row.key)" mat-raised-button color="warn">Sterge</button>
+        <button (click)="editNuntas(row.key)" mat-raised-button color="accent">Edit</button>
+      </mat-cell>
     </ng-container>
-    
+
     <!-- ID Column -->
     <ng-container matColumnDef="nume">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Nume </mat-header-cell>

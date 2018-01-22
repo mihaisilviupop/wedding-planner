@@ -3,7 +3,8 @@ import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/m
 import { NuntasiService } from '../services/nuntasi.service';
 import { Nuntas } from '../models/nuntas.model';
 import { Observable } from 'rxjs/Observable';
-import { NuntasNouComponent } from "../nuntas-nou/nuntas-nou.component";;
+import { NuntasNouComponent } from "../nuntas-nou/nuntas-nou.component";
+import { ConfirmModalComponent, ConfirmModal } from "../confirm-modal/confirm-modal.component";
 
 @Component({
   selector: 'nuntasi',
@@ -46,15 +47,38 @@ export class NuntasiComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  adaugaNuntas() {
-    let dialog = this.dialog.open(NuntasNouComponent, { autoFocus: true });
-    dialog.afterClosed().subscribe((nuntas: Nuntas) => {
-      this.nuntasiService.createNuntas(nuntas);
+
+  editNuntas(key: string = undefined) {
+    let dialog = this.dialog.open(NuntasNouComponent, {
+      autoFocus: true,
+      data: { key: key }
+    });
+    dialog.afterClosed().subscribe((item: { nuntas: Nuntas, key?: string }) => {
+      if (item) {
+        if (item.key) {
+          this.nuntasiService.updateNuntas(item.key, item.nuntas);
+        }
+        else {
+          this.nuntasiService.createNuntas(item.nuntas);
+        }
+      }
     });
   }
 
   stergeNuntas(key: string) {
-    this.nuntasiService.deleteNuntas(key);
+    let dialog = this.dialog.open(ConfirmModalComponent, {
+      data: <ConfirmModal>{
+        title: 'Sterge persoana',
+        message: 'Esti sigur ca vrei sa stergi aceasta persoana?',
+        cancel: "Nu",
+        confirm: 'Da'
+      }
+    });
+    dialog.afterClosed().subscribe(confirm => {
+      if (confirm) {
+        this.nuntasiService.deleteNuntas(key);
+      }
+    });
   }
 
   // importNuntasi(){

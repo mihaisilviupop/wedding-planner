@@ -2,23 +2,23 @@
 
 <div class="form-container" mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Nume" [(ngModel)]="nuntasNou.nume">
+    <input matInput placeholder="Nume" [(ngModel)]="nuntas.nume">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Prenume" [(ngModel)]="nuntasNou.prenume">
+    <input matInput placeholder="Prenume" [(ngModel)]="nuntas.prenume">
   </mat-form-field>
-  <mat-checkbox [(ngModel)]="nuntasNou.invitat">Invitat</mat-checkbox>
-  <mat-checkbox [(ngModel)]="nuntasNou.confirmat">Confirmat</mat-checkbox>
-  <mat-radio-group [(ngModel)]="nuntasNou.parte">Din partea
+  <mat-checkbox [(ngModel)]="nuntas.invitat">Invitat</mat-checkbox>
+  <mat-checkbox [(ngModel)]="nuntas.confirmat">Confirmat</mat-checkbox>
+  <mat-radio-group [(ngModel)]="nuntas.parte">Din partea
     <mat-radio-button value="mihai">Mihai</mat-radio-button>
     <mat-radio-button value="andreea">Andreea</mat-radio-button>
     <mat-radio-button value="amandurora">Amandurora</mat-radio-button>
   </mat-radio-group>
   <mat-form-field>
-    <input type="number" matInput placeholder="Nr. insotitori" [(ngModel)]="nuntasNou.nrInsotitori">
+    <input type="number" matInput placeholder="Nr. insotitori" [(ngModel)]="nuntas.nrInsotitori">
   </mat-form-field>
   <mat-form-field>
-    <input type="text" matInput placeholder="Categorii" [(ngModel)]="nuntasNou.categorii">
+    <input type="text" matInput placeholder="Categorii" [(ngModel)]="nuntas.categorii">
   </mat-form-field>
 </div>
 

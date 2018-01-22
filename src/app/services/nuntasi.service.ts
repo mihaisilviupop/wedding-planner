@@ -46,14 +46,16 @@ export class NuntasiService {
 
   getNuntas(key: string) {
     this.nuntas = this.db.object(`${this.dbPath}/${key}`);
-    return this.nuntas;
+    return this.nuntas.valueChanges().map(item => {
+      return item;
+    });
   }
 
   createNuntas(nuntas: Nuntas): void {
     this.nuntasiRef.push(nuntas);
   }
 
-  updateNuntas(key: string, value: any): void {
+  updateNuntas(key: string, value: Nuntas): void {
     this.nuntasiRef.update(key, value).catch(error => this.handleError(error));
   }
 

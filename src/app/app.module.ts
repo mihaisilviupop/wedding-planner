@@ -14,6 +14,7 @@ import { NuntasiService } from './services/nuntasi.service';
 import { AuthService } from './services/auth.service';
 import { InfoNuntasiComponent } from './info-nuntasi/info-nuntasi.component';
 import { NuntasNouComponent } from './nuntas-nou/nuntas-nou.component';
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { NuntasNouComponent } from './nuntas-nou/nuntas-nou.component';
     AppNavbarComponent,
     NuntasiComponent,
     InfoNuntasiComponent,
-    NuntasNouComponent
+    NuntasNouComponent,
+    ConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,6 @@ import { NuntasNouComponent } from './nuntas-nou/nuntas-nou.component';
   ],
   providers: [NuntasiService, AuthService],
   bootstrap: [AppComponent],
-  entryComponents: [NuntasNouComponent]
+  entryComponents: [NuntasNouComponent, ConfirmModalComponent]
 })
 export class AppModule { }
