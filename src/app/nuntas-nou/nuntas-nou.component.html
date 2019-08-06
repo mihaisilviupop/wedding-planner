@@ -2,18 +2,21 @@
 
 <div class="form-container" mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder="Nume" [(ngModel)]="nuntas.nume">
+    <input matInput placeholder="Nume" [formControl]="nuntas.nume.value" required minlength="3" maxlength="20">
+    <mat-error *ngIf="nuntas.email.invalid">{{nuntas.nume.error()}}</mat-error>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Prenume" [(ngModel)]="nuntas.prenume">
+    <input matInput placeholder="Nume" [formControl]="nuntas.prenume.value" required minlength="3" maxlength="20">
+    <mat-error *ngIf="nuntas.email.invalid">{{nuntas.prenume.error()}}</mat-error>
   </mat-form-field>
   <mat-checkbox [(ngModel)]="nuntas.invitat">Invitat</mat-checkbox>
   <mat-checkbox [(ngModel)]="nuntas.confirmat">Confirmat</mat-checkbox>
-  <mat-radio-group [(ngModel)]="nuntas.parte">Din partea
+  <mat-radio-group [(ngModel)]="nuntas.parte.value">Din partea
     <mat-radio-button value="mihai">Mihai</mat-radio-button>
     <mat-radio-button value="andreea">Andreea</mat-radio-button>
     <mat-radio-button value="amandurora">Amandurora</mat-radio-button>
   </mat-radio-group>
+  <mat-error *ngIf="nuntas.parte.invalid">{{nuntas.parte.error()}}</mat-error>
   <mat-form-field>
     <input type="number" matInput placeholder="Nr. insotitori" [(ngModel)]="nuntas.nrInsotitori">
   </mat-form-field>
